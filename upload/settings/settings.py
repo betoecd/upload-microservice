@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,6 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "authSDK",
 ]
 
 MIDDLEWARE = [
@@ -61,11 +63,29 @@ WSGI_APPLICATION = "settings.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# Authentication parameters
+AUTH_USER_MODEL = "authSDK.User"
+AUTH_USER_TABLE = "users_user"
+AUTH_DB = "authmicroservice"
+DATABASE_ROUTERS = ["authSDK.dbrouter.AuthRouter"]
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+        "ENGINE": os.getenv("UPLOAD_DB_ENGINE"),
+        "NAME": os.getenv("UPLOAD_DB_NAME"),
+        "USER": os.getenv("UPLOAD_DB_USER"),
+        "PASSWORD": os.getenv("UPLOAD_DB_PASSWORD"),
+        "HOST": os.getenv("UPLOAD_DB_HOST"),
+        "PORT": os.getenv("UPLOAD_DB_PORT"),
+    },
+    "authmicroservice": {
+        "ENGINE": os.getenv("AUTH_DB_ENGINE"),
+        "NAME": os.getenv("AUTH_DB_NAME"),
+        "USER": os.getenv("AUTH_DB_USER"),
+        "PASSWORD": os.getenv("AUTH_DB_PASSWORD"),
+        "HOST": os.getenv("AUTH_DB_HOST"),
+        "PORT": os.getenv("AUTH_DB_PORT"),
+    },
 }
 
 
