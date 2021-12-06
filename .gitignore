@@ -1,0 +1,5 @@
+upload/**/migrations
+upload/**/__pycache__/
+
+upload/misc/dev.*
+upload/misc/prod.*

@@ -12,7 +12,7 @@ class AuthRouter:
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         if model_name == settings.AUTH_USER_TABLE:
-            return False
+            return settings.AUTH_DB
         return "default"
 
     def allow_relation(self, obj1, obj2, **hints):

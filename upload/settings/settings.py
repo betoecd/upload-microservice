@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-5z2to4a^sk#&t6#b2bcfd&c$z5iofr#t3x6o7=dqj26mo5m&nx"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -64,8 +64,8 @@ WSGI_APPLICATION = "settings.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Authentication parameters
-AUTH_USER_MODEL = "authSDK.User"
-AUTH_USER_TABLE = "users_user"
+AUTH_USER_MODEL = "authSDK.ExtendUser"
+AUTH_USER_TABLE = "users_extenduser"
 AUTH_DB = "authmicroservice"
 DATABASE_ROUTERS = ["authSDK.dbrouter.AuthRouter"]
 
